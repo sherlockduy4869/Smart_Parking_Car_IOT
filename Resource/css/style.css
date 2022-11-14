@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.heading{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.title{
+    color: red;
+}
+
+.parking_map{
+    background-color: #aaa399;
+}
+
+.top-parking{
+    border-bottom: 1px solid #333;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.top-parking div {
+    border-right: 3px solid #333;
+    height: 250px;
+    width: calc(100% / 3);
+    padding: 15px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.top-parking div img {
+    width: 120px;
+    height: 100%;
+}
+
+.bottom-parking{
+    border-top: 2px solid #333;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bottom-parking div {
+    border-right: 3px solid #333;
+    height: 250px;
+    width: calc(100% / 3);
+    padding: 15px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.bottom-parking div img {
+    width: 120px;
+    height: 100%;
+}
