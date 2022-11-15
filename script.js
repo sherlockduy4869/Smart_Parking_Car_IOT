@@ -9,7 +9,11 @@ $(document).ready(function(){
             url: "ajax_action.php",
             method: "POST",
             success:function(data){
-                $('#load_data').html(data);
+                const myArray = data.split("|");
+                $('#slot_1').html(myArray[0]);
+                $('#slot_2').html(myArray[1]);
+                $('#slot_3').html(myArray[2]);
+                $('#slot_4').html(myArray[3]);
                 //fetch_data();
             }
         });

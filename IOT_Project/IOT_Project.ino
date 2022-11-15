@@ -5,8 +5,8 @@ Servo myservo;
 SoftwareSerial mySerial(12, 13); // RX, TX
 
 #define servo_entrance 11 // Servo entrance
-
 #define infrared_entrance 10 
+
 #define infrared_slot_1 9 
 #define infrared_slot_2 8 
 #define infrared_slot_3 7 
@@ -56,7 +56,7 @@ void entrance_checking(){
     else{
       myservo.write(servo_not_allow);
     }
-    delay(5000);
+    delay(2000);
   //
 }
 
@@ -78,42 +78,42 @@ void slot_parking(){
     }
     else{
       digitalWrite(led_slot_1, LOW); 
-      slot_1 = "not";      
+      slot_1 = "not";    
     }
 
     if(sensor_slot_2 == 1){
       digitalWrite(led_slot_2, HIGH); 
-      slot_1 = "available";
+      slot_2 = "available";
     }
     else{
       digitalWrite(led_slot_2, LOW); 
-      slot_1 = "not";  
+      slot_2 = "not";  
     }
 
     if(sensor_slot_3 == 1){
       digitalWrite(led_slot_3, HIGH); 
-      slot_1 = "available";
+      slot_3 = "available";
     }
     else{
       digitalWrite(led_slot_3, LOW); 
-      slot_1 = "not";  
+      slot_3 = "not";  
     }
 
     if(sensor_slot_4 == 1){
       digitalWrite(led_slot_4, HIGH); 
-      slot_1 = "available";
+      slot_4 = "available";
     }
     else{
       digitalWrite(led_slot_4, LOW); 
-      slot_1 = "not";  
+      slot_4 = "not";  
     }
 
     //Sending data to ESP8266
-  String send_data = "slot1=" + slot_1 + "&slot_2=" + slot_2 + "&slot_3=" + slot_3 + "&slot_4=" + slot_4 ;
+  String send_data = "slot_1=" + slot_1 + "&slot_2=" + slot_2 + "&slot_3=" + slot_3 + "&slot_4=" + slot_4 ;
   //String send_data = "slot1=" + slot_1 + "&slot_2=" + slot_2 + "&slot_3=" + slot_3 + "&slot_4=not" ;
   mySerial.print(send_data);
-  Serial.println();
-  delay(4000);
+  Serial.println(send_data);
+  delay(2000);
 
 }
 
