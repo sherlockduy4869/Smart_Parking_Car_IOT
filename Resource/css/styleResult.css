@@ -1,0 +1,15 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+section{
+    text-align: center;
+    margin-top: 200px;
+}
+
+h1{
+    font-size: 70px;
+    color: green;
+}

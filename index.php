@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PARKING</title>
 
     <!--Boostrap-->
     
@@ -19,7 +19,7 @@
 <body>
     <div class="heading">
         <h2 class="text-center title">WELCOME TO SMART PARKING CAR</h2>
-        <a href="" class="btn btn-primary">CHECK OUT</a>
+        <a href="./vnpay_php/index.php" class="btn btn-primary">CHECKOUT</a>
     </div>
     <section class="parking_map">
         <div class="top-parking">
@@ -39,10 +39,10 @@
                 
             </div>
             <div class="slot_5">
-                <img src="./Resource/img/black_car.png" alt="">
+                <img src="./Resource/img/blacking_car.png" alt="">
             </div>
             <div class="slot_6">
-                <img src="./Resource/img/white_car.jpeg" alt="">
+                <img src="./Resource/img/white_car.png" alt="">
             </div>
         </div>
     </section>
