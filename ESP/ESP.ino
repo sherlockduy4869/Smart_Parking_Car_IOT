@@ -2,8 +2,12 @@
 #include <ESP8266HTTPClient.h>
 #include <WiFiClient.h>
 #include <Arduino_JSON.h>
-
 #include <ESP8266WiFiMulti.h>
+#include <Servo.h>    
+
+int servo_checkout = D7; 
+
+Servo myservo; 
 ESP8266WiFiMulti WiFiMulti;
 
 const char* ssid = "CAFE 205";
@@ -17,19 +21,24 @@ const char* serverName_payment = "http://iotprojectvnuk.atwebpages.com/resultPay
 const long interval = 5000;
 unsigned long previousMillis = 0;
 
+int servo_not_allow = 10;
+int servo_allow = 180;
+
 String outputsState;
 
 void setup() {
   Serial.begin(57600);
   WiFi.mode(WIFI_STA);
-  Serial.print("Connecting to ");
-  Serial.println(ssid);
+  // Serial.print("Connecting to ");
+  // Serial.println(ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
-    Serial.print(".");
+    // Serial.print(".");
   }
-  Serial.println("Connected to WiFi");
+  // Serial.println("Connected to WiFi");
+  myservo.attach(servo_checkout); 
+  myservo.write(servo_allow);
 }
 
 void loop() {
@@ -39,40 +48,43 @@ void loop() {
      // Check WiFi connection status
     if ((WiFiMulti.run() == WL_CONNECTED)) {
       outputsState = httpGETRequest(serverName_payment);
-      Serial.println(outputsState);
+      // Serial.println(outputsState);
       JSONVar myObject = JSON.parse(outputsState);
   
       // JSON.typeof(jsonVar) can be used to get the type of the var
       if (JSON.typeof(myObject) == "undefined") {
-        Serial.println("Parsing input failed!");
+        // Serial.println("Parsing input failed!");
         return;
       }
     
-      Serial.print("JSON object = ");
-      Serial.println(myObject);
+      // Serial.print("JSON object = ");
+      // Serial.println(myObject);
     
       // myObject.keys() can be used to get an array of all the keys in the object
       JSONVar keys = myObject.keys();
       String value;
+
       for (int i = 0; i < keys.length(); i++) {
         value = JSON.stringify(myObject[keys[i]]);
-        Serial.print("GPIO: ");
-        Serial.print(keys[i]);
-        Serial.print(" - SET to: ");
-        Serial.println(value);
+        // Serial.print("GPIO: ");
+        // Serial.print(keys[i]);
+        // Serial.print(" - SET to: ");
+        // Serial.println(value);
 
         if (value == "\"yes\""){
-          Serial.print("okeeee");
+          // myservo.write(servo_allow);
+          delay(500);
+        }else{
+          // myservo.write(servo_not_allow);
           delay(500);
         }
       }
-
       
       // save the last HTTP GET Request
       previousMillis = currentMillis;
     }
     else {
-      Serial.println("WiFi Disconnected");
+      // Serial.println("WiFi Disconnected");
     }
   }
   //postData();
@@ -91,13 +103,13 @@ String httpGETRequest(const char* serverName_payment) {
   String payload = "{}"; 
   
   if (httpResponseCode>0) {
-    Serial.print("HTTP Response code: ");
-    Serial.println(httpResponseCode);
+    // Serial.print("HTTP Response code: ");
+    // Serial.println(httpResponseCode);
     payload = http.getString();
   }
   else {
-    Serial.print("Error code: ");
-    Serial.println(httpResponseCode);
+    // Serial.print("Error code: ");
+    // Serial.println(httpResponseCode);
   }
   //Free resources
   http.end();
@@ -123,8 +135,8 @@ void postData(){
   int httpCode = http.POST(postData);
   String payload = http.getString();
 
-  Serial.println(httpCode);
-  Serial.println(payload);
+  // Serial.println(httpCode);
+  // Serial.println(payload);
   http.end();  
   delay(15000);
 }

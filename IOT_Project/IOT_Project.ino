@@ -48,8 +48,8 @@ void loop() {
 void entrance_checking(){
   //ENTRANCE AREA
     int sensorValue = digitalRead(infrared_entrance);
-    // Serial.print("Gia tri cam bien:");
-    // Serial.println(digitalRead(servo_entrance)); //Nếu sensor = 1 thì không phát hiện vật cản, nếu sensor = 0 thì phát hiện vật cản.
+    Serial.print("Gia tri cam bien:");
+    Serial.println(digitalRead(servo_entrance)); //Nếu sensor = 1 thì không phát hiện vật cản, nếu sensor = 0 thì phát hiện vật cản.
     if(sensorValue == 0){
       myservo.write(servo_allow);
     }
@@ -114,6 +114,25 @@ void slot_parking(){
   mySerial.print(send_data);
   Serial.println(send_data);
   delay(2000);
+
+  // if (mySerial.available() > 0) {
+  //   String ch;
+    //Serial.println("Serial thu 2 gui gia tri: ");
+    //đọc giá trị từ Arduino nếu có
+    // delay(20);
+
+    // ch = mySerial.readString(); //đọc
+    // String value = "Servo_allow";
+    // if(ch == ""){
+    //   Serial.println("Servo quay veo veo ne");
+    //   delay(500);
+    // }
+    // else{
+    //   Serial.println("Servo dong lai ne");
+    //   delay(500);
+    // }
+    // Serial.println(ch == value);
+  // }
 
 }
 
