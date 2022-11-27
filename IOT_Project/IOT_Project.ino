@@ -2,7 +2,7 @@
 #include <SoftwareSerial.h>
 
 Servo myservo; 
-SoftwareSerial mySerial(12, 13); // RX, TX
+SoftwareSerial mySerial(0, 1); // RX, TX
 
 #define servo_entrance 11 // Servo entrance
 #define infrared_entrance 10 
@@ -16,8 +16,6 @@ SoftwareSerial mySerial(12, 13); // RX, TX
 #define led_slot_2 4
 #define led_slot_3 3
 #define led_slot_4 2
-
-#define led_entrance 1
 
 int servo_not_allow = 5;
 int servo_allow = 95;
@@ -47,17 +45,8 @@ void loop() {
 
 void entrance_checking(){
   //ENTRANCE AREA
-    int sensorValue = digitalRead(infrared_entrance);
-    Serial.print("Gia tri cam bien:");
-    Serial.println(digitalRead(servo_entrance)); //Nếu sensor = 1 thì không phát hiện vật cản, nếu sensor = 0 thì phát hiện vật cản.
-    if(sensorValue == 0){
-      myservo.write(servo_allow);
-    }
-    else{
-      myservo.write(servo_not_allow);
-    }
-    delay(2000);
-  //
+
+    
 }
 
 void slot_parking(){
@@ -108,31 +97,33 @@ void slot_parking(){
       slot_4 = "not";  
     }
 
-    //Sending data to ESP8266
   String send_data = "slot_1=" + slot_1 + "&slot_2=" + slot_2 + "&slot_3=" + slot_3 + "&slot_4=" + slot_4 ;
+  if( send_data == "slot_1=not&slot_2=not&slot_3=not&slot_4=not"){
+      myservo.write(servo_not_allow);
+      delay(500);
+    }
+    else{
+      int sensorValue = digitalRead(infrared_entrance);
+      Serial.print("Gia tri cam bien:");
+      Serial.println(digitalRead(servo_entrance)); //Nếu sensor = 1 thì không phát hiện vật cản, nếu sensor = 0 thì phát hiện vật cản.
+      if(sensorValue == 0){
+        myservo.write(servo_allow);
+        delay(6000);
+      }
+      else{
+        myservo.write(servo_not_allow);
+      }
+      delay(2000);
+    }
+
+    //Sending data to ESP8266  
   //String send_data = "slot1=" + slot_1 + "&slot_2=" + slot_2 + "&slot_3=" + slot_3 + "&slot_4=not" ;
   mySerial.print(send_data);
+  delay(10000);
   Serial.println(send_data);
-  delay(2000);
+  
 
-  // if (mySerial.available() > 0) {
-  //   String ch;
-    //Serial.println("Serial thu 2 gui gia tri: ");
-    //đọc giá trị từ Arduino nếu có
-    // delay(20);
 
-    // ch = mySerial.readString(); //đọc
-    // String value = "Servo_allow";
-    // if(ch == ""){
-    //   Serial.println("Servo quay veo veo ne");
-    //   delay(500);
-    // }
-    // else{
-    //   Serial.println("Servo dong lai ne");
-    //   delay(500);
-    // }
-    // Serial.println(ch == value);
-  // }
 
 }
 
