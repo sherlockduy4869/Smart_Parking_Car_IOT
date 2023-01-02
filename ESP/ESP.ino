@@ -46,52 +46,53 @@ void setup() {
 }
 
 void loop() {
-  // unsigned long currentMillis = millis();
+  unsigned long currentMillis = millis();
   
-  // if(currentMillis - previousMillis >= interval) {
-  //    // Check WiFi connection status
-  //   if ((WiFiMulti.run() == WL_CONNECTED)) {
-  //     outputsState = httpGETRequest(serverName_payment);
-  //     // Serial.println(outputsState);
-  //     JSONVar myObject = JSON.parse(outputsState);
+  if(currentMillis - previousMillis >= interval) {
+     // Check WiFi connection status
+    if ((WiFiMulti.run() == WL_CONNECTED)) {
+      outputsState = httpGETRequest(serverName_payment);
+      // Serial.println(outputsState);
+      JSONVar myObject = JSON.parse(outputsState);
   
-  //     // JSON.typeof(jsonVar) can be used to get the type of the var
-  //     if (JSON.typeof(myObject) == "undefined") {
-  //       // Serial.println("Parsing input failed!");
-  //       return;
-  //     }
+      // JSON.typeof(jsonVar) can be used to get the type of the var
+      if (JSON.typeof(myObject) == "undefined") {
+        // Serial.println("Parsing input failed!");
+        return;
+      }
     
-  //     // Serial.print("JSON object = ");
-  //     // Serial.println(myObject);
+      // Serial.print("JSON object = ");
+      // Serial.println(myObject);
     
-  //     // myObject.keys() can be used to get an array of all the keys in the object
-  //     JSONVar keys = myObject.keys();
-  //     String value;
+      // myObject.keys() can be used to get an array of all the keys in the object
+      JSONVar keys = myObject.keys();
+      String value;
 
-  //     for (int i = 0; i < keys.length(); i++) {
-  //       value = JSON.stringify(myObject[keys[i]]);
-  //       // Serial.print("GPIO: ");
-  //       // Serial.print(keys[i]);
-  //       // Serial.print(" - SET to: ");
-  //       // Serial.println(value);
+      for (int i = 0; i < keys.length(); i++) {
+        value = JSON.stringify(myObject[keys[i]]);
+        // Serial.print("GPIO: ");
+        // Serial.print(keys[i]);
+        // Serial.print(" - SET to: ");
+        // Serial.println(value);
 
-  //       if (value == "\"yes\""){
-  //         // myservo.write(servo_allow);
-  //         delay(500);
-  //       }else{
-  //         // myservo.write(servo_not_allow);
-  //         delay(500);
-  //       }
-  //     }
+        if (value == "\"yes\""){
+          Serial.print(value);
+          myservo.write(servo_allow);
+          delay(500);
+        }else{
+          myservo.write(servo_not_allow);
+          delay(500);
+        }
+      }
       
-  //     // save the last HTTP GET Request
-  //     previousMillis = currentMillis;
-  //   }
-  //   else {
-  //     // Serial.println("WiFi Disconnected");
-  //   }
-  // }
-  postData();
+      // save the last HTTP GET Request
+      previousMillis = currentMillis;
+    }
+    else {
+      // Serial.println("WiFi Disconnected");
+    }
+  }
+  // postData();
 }
 
 String httpGETRequest(const char* serverName_payment) {

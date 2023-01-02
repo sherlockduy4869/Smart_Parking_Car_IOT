@@ -8,67 +8,82 @@ body{
     padding: 5px;
 }
 
-.available{
-    font-size: 120px;
-}
-
 .heading{
+    margin-top: 25px;
+}
+
+
+.parking_top{
+    display: flex;
+    justify-content: space-between;
+    height: 150px;
     margin-top: 30px;
-    margin-bottom: 30px;
+    background-color: #888484;
+    border-top: 5px solid black;
+    border-left: 5px solid black;
 }
 
-.title{
-    color: red;
+.parking_top .parking_top_item{
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.parking_map{
-    background-color: #aaa399;
+.parking_top_item{
+    border-right: 5px solid black;
 }
 
-.top-parking{
-    border-bottom: 1px solid #333;
-    border-top: 3px solid #333;
-    border-left: 3px solid #333;
-    width: 100%;
+.parking_middle{
     display: flex;
     justify-content: space-between;
+    height: 150px;
+    background-color: #888484;
 }
 
-.top-parking div {
-    border-right: 3px solid #333;
-    height: 250px;
-    width: calc(100% / 3);
-    padding: 15px;
-    text-align: center;
-    align-items: center;
+.parking_middle .parking_middle_item{
+    width: 20%;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.top-parking div img {
-    width: 120px;
-    height: 100%;
+.parking_middle_item h1{
+    transform: rotate(90deg);
 }
 
-.bottom-parking{
-    border-top: 2px solid #333;
-    border-bottom: 3px solid #333;
-    border-left: 3px solid #333;
-    width: 100%;
+.square{
+    height: 40px;
+    width: 100px;
+    background-color: black;
+}
+
+.arrow-right{
+    width: 0; 
+    height: 0; 
+    border-top: 60px solid transparent;
+    border-bottom: 60px solid transparent;
+    
+    border-left: 60px solid black;
+}
+
+.parking_bottom{
     display: flex;
     justify-content: space-between;
+    height: 150px;
+    background-color: #888484;
+    border-bottom: 5px solid black;
+    border-left: 5px solid black;
 }
 
-.bottom-parking div {
-    border-right: 3px solid #333;
-    height: 250px;
-    width: calc(100% / 3);
-    padding: 15px;
-    text-align: center;
-    align-items: center;
+.parking_bottom .parking_bottom_item{
+    width: 20%;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    border-right: 5px solid black;
 }
 
-.bottom-parking div img {
-    width: 120px;
-    height: 100%;
+.parking_bottom_item img, .parking_top_item img{
+    width: 25%;
 }
