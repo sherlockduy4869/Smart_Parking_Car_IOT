@@ -74,11 +74,11 @@
     </div>
 
     <div class="parking_bottom">
-        <div id="slot_4" class="parking_bottom_item slot_4">
+        <div class="parking_bottom_item">
 
         </div>
         <div class="parking_bottom_item">
-            <h1>4</h1>
+            <img src="./Resource/img/blacking_car.png" alt="">
         </div>
         <div class="parking_bottom_item">
             <img src="./Resource/img/blacking_car.png" alt="">

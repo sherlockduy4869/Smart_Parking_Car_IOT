@@ -46,7 +46,7 @@
         while($rows = mysqli_fetch_array($sql_select_3)){
             
             if($rows['status']== "not"){
-                $outPut .= '<img src="./Resource/img/blue_car.png">';
+                $outPut .= '<img src="./Resource/img/white_car.png">';
                 $outPut .= "|";
             }
             else{
@@ -56,18 +56,19 @@
         }
     }
 
-    if(mysqli_num_rows($sql_select_4)>0){
+    // if(mysqli_num_rows($sql_select_4)>0){
 
-        while($rows = mysqli_fetch_array($sql_select_4)){
+    //     while($rows = mysqli_fetch_array($sql_select_4)){
             
-            if($rows['status']== "not"){
-                $outPut .= '<img src="./Resource/img/blue_car.png">';
-            }
-            else{
-                $outPut .= '<h2 class = "available">4</h2>';
-            }
-        }
-    }
+    //         if($rows['status'] == "not"){
+    //             $outPut .= '<img src="./Resource/img/white_car.png">';
+    //         }
+    //         else{
+    //             $outPut .= '<h2 class = "available">4</h2>';
+    //         }
+    //     }
+    // }
+
 
     echo $outPut;
 
