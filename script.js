@@ -2,7 +2,8 @@ $(document).ready(function(){
 
     setInterval(function(){
         fetch_data();
-    },5000);
+        update_checkout();
+    },6000);
 
     function fetch_data(){
         $.ajax({
@@ -17,6 +18,18 @@ $(document).ready(function(){
                 //fetch_data();
             }
         });
+    }
+
+    function update_checkout(){
+        $.ajax({
+            url: "refresh_checkout.php",
+            method: "POST",
+            data: {"payment" : "no"},
+            success: function(data){
+                console.log(data)
+            }
+        });
+        
     }
 
     //fetch_data();

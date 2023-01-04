@@ -35,5 +35,6 @@ if(!empty($_POST['slot_4'])){
   $conn->query($sql_4);
 }
 
+
 $conn->close();
 ?>
